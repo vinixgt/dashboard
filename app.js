@@ -4,10 +4,30 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var db        = {};
+/////////////////////////
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var cities = require('./routes/cities'); //
+var Sequelize = require('sequelize')
+  , sequelize = new Sequelize('siriusxm_calling_planner', 'bi', '@ll1ed999sc', {
+  	 host: '172.17.136.90',
+      dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
+      port:    3306, // or 5432 (for postgres)
+    });
+db.siquelize = Sequelize;
+
+
+
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  }, function (err) { 
+    console.log('Unable to connect to the database:', err);
+  });
+
+var index = require('./routes/index', Sequelize, db);
+var users = require('./routes/users', Sequelize, db);
+var cities = require('./routes/cities', Sequelize, db); //
 
 var app = express();
 
@@ -47,22 +67,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-/////////////////////////
-
-var Sequelize = require('sequelize')
-  , sequelize = new Sequelize('siriusxm_calling_planner', 'bi', '@ll1ed999sc', {
-  	 host: '172.17.136.90',
-      dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
-      port:    3306, // or 5432 (for postgres)
-    });
-
-sequelize
-  .authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully.');
-  }, function (err) { 
-    console.log('Unable to connect to the database:', err);
-  });
 
 
 
