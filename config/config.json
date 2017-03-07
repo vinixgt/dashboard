@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "bi",
+    "password": "@ll1ed999sc",
+    "database": "siriusxm_calling_planner",
+    "host": "172.17.136.90",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "bi",
+    "password": "@ll1ed999sc",
+    "database": "siriusxm_calling_planner",
+    "host": "172.17.136.90",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "bi",
+    "password": "@ll1ed999sc",
+    "database": "siriusxm_calling_planner",
+    "host": "172.17.136.90",
+    "dialect": "mysql"
+  }
+}
