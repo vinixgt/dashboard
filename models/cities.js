@@ -1,14 +1,10 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Cities = sequelize.define('Cities', {
-    city: DataTypes.STRING,
-    state_code: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
-  });
-  return Cities;
-};
+module.exports = function (db) {
+	var Sequelize = require('sequelize');
+
+	var City = db.sequelize.define('City', {
+		id: { type: Sequelize.INTEGER, primaryKey: true},
+		name: { type: Sequelize.STRING, field: "name"},
+		code: { type: Sequelize.STRING, field: "code"}
+	});
+	return City;
+}
